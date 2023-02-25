@@ -13,24 +13,31 @@ def get_new_links(query, old_links=[]):
     new_links = [link for link in list_links if link not in old_links]
     return new_links
 
-def storeLinks(query):
+## 텔레그램으로 전송
+async def send_links(query):
     global old_links
     new_links = get_new_links(query, old_links)
-    
-    # 새로운 링크 있으면 저장
+
+    # 새로운 링크 있으면 챗봇 전송
+    if new_links:
+        #uptime = now.strftime('%Y-%m-%d %H:%M:%S')
+        query
+        querya = query.split(' +%2B')
+        queryb = querya[0].split(' -')
+        queryc = queryb[0]
+        queryc
+
+        for link in new_links: 
+            await bot.send_message(chat_id=chat_id, text= ' 최신 수집된 ' + f"{queryc} 뉴스입니다.")
+        for link in new_links:
+            await bot.send_message(chat_id=chat_id, text=link)
+            time.sleep(3)
+    else:
+        # 앙패스띠
+        pass
+
     old_links += new_links.copy()
-    # query
-    # querya = query.split(' +%2B')
-    # queryb = querya[0].split(' -')
-    # queryc = queryb[0]
-    # queryc
-    
-## 텔레그램으로 전송
-async def send_links(links):
-    # 챗봇 전송
-    # 새로운 링크 있으면 
-    for link in links:
-        await bot.send_message(chat_id=chat_id, text=link)
+
     
 #실행주기
 #schedule.every().day.at("15:17").do(send_links)
@@ -53,7 +60,6 @@ if __name__ == '__main__':
     # 주기
     #job = schedule.every(10).seconds.do(send_links, query)
     old_links = []
-    i = 0
         
     while True:
         #schedstop = threading.Event()
@@ -65,14 +71,7 @@ if __name__ == '__main__':
         #        schedthread.start()
         #uptime = now.strftime('%Y-%m-%d %H:%M:%S')
         #await bot.send_message(chat_id=chat_id, text="관련 기사 수집 중..")
-        i += 1
-        for query in queries:
-            storeLinks(query)
-            
-        print(" 작동 중")
-        if i == 3 {
-            print("3번째 돌았으니까 전송")
-            asyncio.run(send_links(old_links))
-            i = 0
-        }
-        time.sleep(1)
+            for query in queries:
+                asyncio.run(send_links(query))
+            print(" 작동 중")
+            time.sleep(1)
