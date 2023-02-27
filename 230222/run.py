@@ -110,3 +110,57 @@ if name == '__main__':
         time_string = now.strftime('%H:%M:%S')
         #print(time_string)
         date = now.strftime('<News> 케이클라비스-메타 세컨더리펀드 제일호\n%m월 %d일 %H시 기준 최신 기사입니다.\n\n')
+        if time_string == first_hour:
+            print(first_hour + "작동 중")
+            cnt = 0
+            text = ""
+            for i in range(0, len(queries)):
+                link = set_links(queries[i])
+                if not link:
+                    continue
+                cnt += 1
+                text += link
+                if cnt % 5 == 0:
+                    if text:
+                        asyncio.run(send_links(cnt, date, text))
+                    text = ""
+                if i == len(queries) - 1:
+                    if text:
+                        asyncio.run(send_links(cnt, date, text))
+                time.sleep(3)
+        elif time_string == second_hour:
+            print(second_hour + "작동 중")
+            cnt = 0
+            text = ""
+            for i in range(0, len(queries)):
+                link = set_links(queries[i])
+                if not link:
+                    continue
+                cnt += 1
+                text += link
+                if cnt % 5 == 0:
+                    if text:
+                        asyncio.run(send_links(cnt, date, text))
+                    text = ""
+                if i == len(queries) - 1:
+                    if text:
+                        asyncio.run(send_links(cnt, date, text))
+                time.sleep(3)
+        elif time_string == third_hour:
+            print(third_hour + "작동 중")
+            cnt = 0
+            text = ""
+            for i in range(0, len(queries)):
+                link = set_links(queries[i])
+                if not link:
+                    continue
+                cnt += 1
+                text += link
+                if cnt % 5 == 0:
+                    if text:
+                        asyncio.run(send_links(cnt, date, text))
+                    text = ""
+                if i == len(queries) - 1:
+                    if text:
+                        asyncio.run(send_links(cnt, date, text))
+                time.sleep(3)
