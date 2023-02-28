@@ -1,6 +1,3 @@
-{query} : 네이버 뉴스검색
-'{query}'의 네이버 뉴스검색 결과입니다.
-
 import schedule
 from datetime import datetime
 
