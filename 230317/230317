@@ -1,0 +1,11 @@
+많은 비동기 작업을 병렬로 실행하는 데 관심이 있다면
+
+**WWDC21 Explore structured concurrency in Swift**
+
+비동기 함수가 suspend 된다는 것에 대해 알아보자
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/559184b4-9ba7-47cd-b811-66439fde38d7/Untitled.png)
+
+함수를 호출하면 함수가 실행 중인 스레드의 제어권을 해당 함수로 넘긴다.
+
+여기에서 `thumbnailURLRequest`와 같이 호출하는 일반 함수인 경우 스레드는 완료될 때까지 해당 함수 대신 작업을 수행하는데 완전히 사용된다.
