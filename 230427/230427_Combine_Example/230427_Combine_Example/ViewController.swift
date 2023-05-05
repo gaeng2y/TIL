@@ -14,6 +14,15 @@ class ViewController: UIViewController {
         tf.borderStyle = .roundedRect
         return tf
     }()
+    
+    lazy var label: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        return label
+    }()
+    
+    @Published var text = AnyPublisher<String, Never>(<#T##publisher: Publisher##Publisher#>)
+    
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -46,7 +55,23 @@ class ViewController: UIViewController {
                 print("receiveCompletion: \($0)")
             }, receiveValue: {
                 print("receiveValue: \($0)")
+                self.text = $0
             })
         subscriber.store(in: &self.cancellables)
+        
+        // textfield 붙이기
+        self.view.addSubview(self.label)
+        self.label.translatesAutoresizingMaskIntoConstraints = false
+        [
+            self.label.topAnchor.constraint(equalTo: self.textField.bottomAnchor, constant: -30),
+            self.label.widthAnchor.constraint(equalToConstant: 200),
+            self.label.heightAnchor.constraint(equalToConstant: 50)
+        ].forEach {
+            $0.isActive = true
+        }
+        
+        self.$text
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.text, on: self.label)
     }
 }
